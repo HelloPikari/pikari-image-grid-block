@@ -55,3 +55,21 @@ function pikari_image_grid_block_block_categories( $categories )
     );
 }
 add_filter('block_categories_all', 'pikari_image_grid_block_block_categories', 10, 1);
+
+/**
+ * Activation hook.
+ */
+function pikari_image_grid_block_activate() {
+    // Code to run on plugin activation.
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'pikari_image_grid_block_activate' );
+
+/**
+ * Deactivation hook.
+ */
+function pikari_image_grid_block_deactivate() {
+    // Code to run on plugin deactivation.
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'pikari_image_grid_block_deactivate' );

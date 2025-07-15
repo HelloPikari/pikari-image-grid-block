@@ -17,7 +17,7 @@ import {
 	TextControl,
 	ResizableBox,
 } from '@wordpress/components';
-import {__, sprintf} from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import classnames from 'classnames';
 import './editor.scss';
 
@@ -27,7 +27,7 @@ import './editor.scss';
  * @param {Object}   root0.attributes    - The block attributes
  * @param {Function} root0.setAttributes - Function to update block attributes
  */
-export default function Edit( {attributes, setAttributes} ) {
+export default function Edit( { attributes, setAttributes } ) {
 	const {
 		gridLayout,
 		gap,
@@ -62,7 +62,9 @@ export default function Edit( {attributes, setAttributes} ) {
 
 	// Parse numeric values for ResizableBox
 	const getNumericValue = ( value ) => {
-		if ( ! value || value === 'auto' ) return null;
+		if ( ! value || value === 'auto' ) {
+			return null;
+		}
 		return parseInt( value );
 	};
 
@@ -107,7 +109,7 @@ export default function Edit( {attributes, setAttributes} ) {
 						onSelect={ onSelectImage( imageNumber ) }
 						allowedTypes={ [ 'image' ] }
 						value={ imageId }
-						render={ ( {open} ) => (
+						render={ ( { open } ) => (
 							<div className="image-control-wrapper">
 								{ imageUrl ? (
 									<>
@@ -185,10 +187,10 @@ export default function Edit( {attributes, setAttributes} ) {
 	};
 
 	const images = [
-		{id: image1Id, url: image1Url, alt: image1Alt},
-		{id: image2Id, url: image2Url, alt: image2Alt},
-		{id: image3Id, url: image3Url, alt: image3Alt},
-		{id: image4Id, url: image4Url, alt: image4Alt},
+		{ id: image1Id, url: image1Url, alt: image1Alt },
+		{ id: image2Id, url: image2Url, alt: image2Alt },
+		{ id: image3Id, url: image3Url, alt: image3Alt },
+		{ id: image4Id, url: image4Url, alt: image4Alt },
 	];
 
 	return (
