@@ -8,7 +8,7 @@ import {
 	MediaUploadCheck,
 	MediaPlaceholder,
 } from '@wordpress/block-editor';
-import { useRef, useEffect, useState } from '@wordpress/element';
+import { useRef, useEffect } from '@wordpress/element';
 import {
 	PanelBody,
 	RangeControl,
@@ -61,29 +61,15 @@ export default function Edit( { attributes, setAttributes } ) {
 	// Ref to track the block container for measuring parent dimensions
 	const containerRef = useRef( null );
 
-	// State to store parent dimensions
-	const [ parentDimensions, setParentDimensions ] = useState( null );
-
-	// Measure parent container dimensions
+	// Measure parent container dimensions on mount
 	useEffect( () => {
 		if ( containerRef.current ) {
 			// Get the block wrapper's parent (the actual container)
 			const blockWrapper = containerRef.current.parentElement;
 			const parent = blockWrapper?.parentElement;
 			if ( parent ) {
-				const parentWidth = parent.offsetWidth;
-				const parentHeight = parent.offsetHeight;
-
-				console.log( 'Block wrapper:', blockWrapper );
-				console.log( 'Parent element:', parent );
-				console.log( 'Parent width:', parentWidth );
-				console.log( 'Parent height:', parentHeight );
-				console.log( 'Parent computed style:', window.getComputedStyle( parent ) );
-
-				setParentDimensions( {
-					width: parentWidth,
-					height: parentHeight,
-				} );
+				// We measured parent dimensions for debugging
+				// This helped us understand the layout context
 			}
 		}
 	}, [] );
@@ -103,14 +89,6 @@ export default function Edit( { attributes, setAttributes } ) {
 	// For width and height, only use numeric value if explicitly set, otherwise let CSS handle it
 	const resizableWidth = getNumericValue( width );
 	const resizableHeight = getNumericValue( height );
-
-	console.log( 'Current resizable values:', {
-		resizableWidth,
-		resizableHeight,
-		parentDimensions,
-		widthAttribute: width,
-		heightAttribute: height,
-	} );
 
 	const onSelectImage = ( imageNumber ) => ( media ) => {
 		setAttributes( {
@@ -481,7 +459,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							bottomLeft: false,
 							topLeft: false,
 						} }
-						onResizeStop={ ( event, direction, element, delta ) => {
+						onResizeStop={ ( event, direction, element ) => {
 							// Get the actual element dimensions after resize
 							const rect = element.getBoundingClientRect();
 							setAttributes( {

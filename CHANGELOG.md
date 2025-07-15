@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+-   Semantic HTML structure with `<figure>` elements for images
+-   MediaPlaceholder component for empty block state
+
+### Fixed
+
+-   Dynamic parent dimension measurement for responsive sizing
+-   Block centering when placed inside WordPress Group blocks
+-   ResizableBox behavior with fit-content when dimensions not set
+-   Placeholder border display using has-placeholder class
+-   Frontend dimension respect for width/height settings
+
+### Changed
+
+-   Improved empty block handling without min-height constraints
+-   Enhanced placeholder styling to prevent border cut-off
+
 ## [0.1.0] - 2025-07-14
 
 ### Added

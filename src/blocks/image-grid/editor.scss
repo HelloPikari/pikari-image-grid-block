@@ -78,6 +78,22 @@
 		position: relative;
 	}
 
+	/* MediaPlaceholder styling */
+	.components-placeholder {
+		min-height: fit-content;
+		.components-placeholder__label {
+			font-size: 1.2em;
+			margin-bottom: 1em;
+		}
+		.components-placeholder__instructions {
+			margin-bottom: 1.5em;
+		}
+		.components-placeholder__fieldset {
+			flex-direction: row;
+			gap: 1em;
+		}
+	}
+
 }
 
 /* Style the image controls in the sidebar */
