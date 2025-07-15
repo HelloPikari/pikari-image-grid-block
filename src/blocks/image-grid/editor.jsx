@@ -6,6 +6,7 @@ import {
 	InspectorControls,
 	MediaUpload,
 	MediaUploadCheck,
+	MediaPlaceholder,
 } from '@wordpress/block-editor';
 import { useRef, useEffect, useState } from '@wordpress/element';
 import {
@@ -233,6 +234,90 @@ export default function Edit( { attributes, setAttributes } ) {
 		{ id: image4Id, url: image4Url, alt: image4Alt },
 	];
 
+	// Check if all images are empty
+	const hasImages = images.some( ( image ) => image.url );
+
+	// If no images, show placeholder
+	if ( ! hasImages ) {
+		return (
+			<>
+				<InspectorControls>
+					<PanelBody
+						title={ __( 'Layout Settings', 'pikari-image-grid' ) }
+					>
+						<SelectControl
+							label={ __( 'Grid Layout', 'pikari-image-grid' ) }
+							value={ gridLayout }
+							options={ [
+								{
+									label: __( 'Asymmetric', 'pikari-image-grid' ),
+									value: 'asymmetric',
+								},
+								{
+									label: __( 'Equal Grid', 'pikari-image-grid' ),
+									value: 'equal',
+								},
+								{
+									label: __( 'Masonry', 'pikari-image-grid' ),
+									value: 'masonry',
+								},
+							] }
+							onChange={ ( value ) =>
+								setAttributes( {
+									gridLayout: value,
+								} )
+							}
+							help={ __(
+								'Choose how the images are arranged in the grid.',
+								'pikari-image-grid'
+							) }
+						/>
+					</PanelBody>
+				</InspectorControls>
+				<div { ...blockProps }>
+					<MediaPlaceholder
+						icon="grid-view"
+						labels={ {
+							title: __( 'Image Grid', 'pikari-image-grid' ),
+							instructions: __(
+								'Upload images or select from your media library to create a beautiful image grid.',
+								'pikari-image-grid'
+							),
+						} }
+						onSelect={ ( media ) => {
+							// Handle multiple image selection
+							if ( Array.isArray( media ) ) {
+								const updates = {};
+								media.slice( 0, 4 ).forEach( ( img, index ) => {
+									const num = index + 1;
+									updates[ `image${ num }Id` ] = img.id;
+									updates[ `image${ num }Url` ] = img.url;
+									updates[ `image${ num }Alt` ] = img.alt || '';
+								} );
+								setAttributes( updates );
+							} else {
+								// Single image - add to first empty slot
+								for ( let i = 1; i <= 4; i++ ) {
+									if ( ! attributes[ `image${ i }Url` ] ) {
+										setAttributes( {
+											[ `image${ i }Id` ]: media.id,
+											[ `image${ i }Url` ]: media.url,
+											[ `image${ i }Alt` ]: media.alt || '',
+										} );
+										break;
+									}
+								}
+							}
+						} }
+						accept="image/*"
+						allowedTypes={ [ 'image' ] }
+						multiple
+					/>
+				</div>
+			</>
+		);
+	}
+
 	return (
 		<>
 			<InspectorControls>
@@ -419,7 +504,13 @@ export default function Edit( { attributes, setAttributes } ) {
 							} }
 						>
 							{ images.map( ( image, index ) => (
-								<div key={ index } className="image-grid-item">
+								<div
+									key={ index }
+									className={ classnames(
+										'image-grid-item',
+										{ 'has-placeholder': ! image.url }
+									) }
+								>
 									{ image.url ? (
 										<img
 											src={ image.url }

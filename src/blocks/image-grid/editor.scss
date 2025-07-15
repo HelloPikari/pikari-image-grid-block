@@ -18,7 +18,6 @@
 	/* Placeholder styles for empty image positions */
 	.image-placeholder {
 		background-color: #f0f0f0;
-		border: 2px dashed #ddd;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -35,6 +34,12 @@
 	/* Ensure grid items have proper height in editor */
 	.image-grid-item {
 		min-height: 50px;
+		
+		/* Style the placeholder container */
+		&.has-placeholder {
+			border: 2px dashed #ddd;
+			border-radius: var(--image-grid-border-radius, 8px);
+		}
 	}
 
 	/* ResizableBox styles */

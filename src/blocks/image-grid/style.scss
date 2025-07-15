@@ -2,10 +2,16 @@
  * Block styling for both frontend & backend.
  */
 .wp-block-pikari-image-grid {
+	// Default to fit-content when no explicit dimensions
+	&:not([style*="width"]) {
+		width: fit-content;
+	}
+
 	.image-grid-container {
 		display: grid;
 		gap: var(--image-grid-gap, 16px);
-		width: fit-content;
+		width: 100%;
+		height: 100%;
 	}
 
 	/* Ensure image grid items fill their grid cells */
@@ -14,7 +20,13 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		border-radius: var(--image-grid-gap, 0);
+		border-radius: var(--image-grid-border-radius, 8px);
+
+		/* Style the placeholder container */
+		&.has-placeholder {
+			border: 2px dashed #ddd;
+			background-color: #f0f0f0;
+		}
 
 		/* Apply border radius to all images within the grid */
 		img,
@@ -41,7 +53,6 @@
 		grid-template-columns: repeat(7, minmax(0, 1fr));
 		grid-template-rows: repeat(7, minmax(0, 1fr));
 		aspect-ratio: 1 / 1;
-		min-height: 500px;
 
 		/* Position items in asymmetric grid */
 		> .image-grid-item {
@@ -68,7 +79,6 @@
 	.is-layout-equal {
 		grid-template-columns: repeat(2, 1fr);
 		grid-template-rows: repeat(2, 1fr);
-		min-height: 500px;
 	}
 
 	/* Masonry Grid Layout */
@@ -108,8 +118,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #f0f0f0;
-	border-radius: var(--image-grid-border-radius, 8px);
 	color: #666;
 	font-size: 0.875rem;
 }

@@ -71,7 +71,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() output is safe ?>>
     <div class="<?php echo esc_attr(implode(' ', $container_classes)); ?>">
         <?php foreach ( $images as $index => $image ) : ?>
-            <div class="image-grid-item">
+            <div class="image-grid-item<?php echo ( ! $image || ! $image['id'] ) ? ' has-placeholder' : ''; ?>">
             <?php if ( $image && $image['id'] ) : ?>
                 <?php
                 // Use WordPress functions for proper responsive images
