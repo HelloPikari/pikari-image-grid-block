@@ -36,6 +36,9 @@
 	"[scss]": {
 		"editor.formatOnSave": false
 	},
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 
 	// PHP Settings
 	"[php]": {

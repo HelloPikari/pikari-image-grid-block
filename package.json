@@ -23,8 +23,8 @@
 	"scripts": {
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
-		"lint:all": "npm run lint:js && npm run lint:css && npm run lint:php",
-		"lint:fix": "npm run lint:js:fix && npm run lint:css:fix && npm run lint:php:fix",
+		"lint:all": "npm run lint:js && npm run lint:css && npm run lint:php && npm run lint:md:docs",
+		"lint:fix": "npm run lint:js:fix && npm run lint:css:fix && npm run lint:php:fix && npm run lint:md:fix",
 		"lint:js": "wp-scripts lint-js src",
 		"lint:js:fix": "wp-scripts lint-js src --fix",
 		"lint:css": "wp-scripts lint-style src/**/*.{css,scss}",
@@ -32,6 +32,7 @@
 		"lint:php": "composer lint",
 		"lint:php:fix": "composer lint:fix",
 		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:md:fix": "wp-scripts lint-md-docs --fix",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"test:e2e": "wp-scripts test-e2e",
 		"test:unit": "wp-scripts test-unit-js",
@@ -51,17 +52,16 @@
 	},
 	"lint-staged": {
 		"*.php": [
-			"composer run lint"
+			"composer lint:file"
 		],
 		"*.js": [
-			"wp-scripts lint-js",
-			"prettier --write"
+			"wp-scripts lint-js"
 		],
-		"*.{scss,css}": [
+		"*.{css,scss}": [
 			"wp-scripts lint-style"
 		],
-		"*.{json,md}": [
-			"prettier --write"
+		"*.md": [
+			"wp-scripts lint-md-docs"
 		]
 	}
 }

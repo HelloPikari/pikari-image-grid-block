@@ -165,7 +165,7 @@ Note: Prettier is configured to ignore JavaScript files. ESLint handles all Java
 -   Follow WordPress file naming conventions
 -   Use WordPress template hierarchy for themes
 
-### Dependencies
+### Technical Dependencies
 
 -   WordPress [WP_VERSION]
 -   PHP [PHP_VERSION]
@@ -182,7 +182,7 @@ Note: Prettier is configured to ignore JavaScript files. ESLint handles all Java
 -   Pre-commit hooks run linting automatically via Husky
 -   All commits must pass linting
 
-## Testing
+## Testing Strategy
 
 -   JavaScript tests in `tests/unit/`
 -   PHP tests in `tests/` following PHPUnit structure
@@ -271,7 +271,7 @@ Note: Prettier is configured to ignore JavaScript files. ESLint handles all Java
 -   Never commit secrets or API keys to version control
 -   Use environment variables for sensitive configuration
 
-### Dependencies
+### Dependency Management
 
 -   Keep all dependencies up to date
 -   Regularly audit dependencies for vulnerabilities
@@ -309,7 +309,7 @@ See bin/release.sh for automated release process
 -   Text domain must match plugin/theme slug
 -   Generate .pot files for translators
 
-### Performance
+### WordPress Performance
 
 -   Minimize database queries
 -   Use object caching when available

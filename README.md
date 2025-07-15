@@ -43,7 +43,7 @@ npm run plugin-zip
 
 ### File Structure
 
-```
+```text
 pikari-image-grid-block/
 ├── pikari-image-grid-block.php    # Main plugin file
 ├── package.json             # NPM configuration
