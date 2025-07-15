@@ -1,7 +1,7 @@
 {
   "name": "pikari/pikari-image-grid-block",
   "description": "A customizable image grid block for WordPress",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "authors": [
