@@ -72,13 +72,13 @@ export default function Edit( { attributes, setAttributes } ) {
 			if ( parent ) {
 				const parentWidth = parent.offsetWidth;
 				const parentHeight = parent.offsetHeight;
-				
+
 				console.log( 'Block wrapper:', blockWrapper );
 				console.log( 'Parent element:', parent );
 				console.log( 'Parent width:', parentWidth );
 				console.log( 'Parent height:', parentHeight );
 				console.log( 'Parent computed style:', window.getComputedStyle( parent ) );
-				
+
 				setParentDimensions( {
 					width: parentWidth,
 					height: parentHeight,
@@ -88,8 +88,8 @@ export default function Edit( { attributes, setAttributes } ) {
 	}, [] );
 
 	// Calculate dimensions for the ResizableBox
-	const currentWidth = width || '100%';
-	const currentHeight = height || 'auto';
+	const currentWidth = width || 'fit-content';
+	const currentHeight = height || 'fit-content';
 
 	// Parse numeric values for ResizableBox
 	const getNumericValue = ( value ) => {
@@ -99,8 +99,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		return parseInt( value );
 	};
 
-	const resizableWidth = getNumericValue( width ) || parentDimensions?.width || 600;
-	const resizableHeight = getNumericValue( height ) || parentDimensions?.height || 400;
+	// For width and height, only use numeric value if explicitly set, otherwise let CSS handle it
+	const resizableWidth = getNumericValue( width );
+	const resizableHeight = getNumericValue( height );
 
 	console.log( 'Current resizable values:', {
 		resizableWidth,
@@ -374,78 +375,79 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div { ...blockProps }>
 				<div ref={ containerRef } style={ { height: '100%' } }>
 					<ResizableBox
-					size={ {
-						width: resizableWidth,
-						height: resizableHeight,
-					} }
-					style={ {
-						width: currentWidth,
-						height: currentHeight,
-					} }
-					minHeight={ 200 }
-					minWidth={ 200 }
-					enable={ {
-						top: false,
-						right: true,
-						bottom: true,
-						left: false,
-						topRight: false,
-						bottomRight: true,
-						bottomLeft: false,
-						topLeft: false,
-					} }
-					onResizeStop={ ( event, direction, element, delta ) => {
-						const newWidth = resizableWidth + delta.width;
-						const newHeight = resizableHeight + delta.height;
-						setAttributes( {
-							width: `${ newWidth }px`,
-							height: `${ newHeight }px`,
-						} );
-					} }
-					className="image-grid-resizable"
-				>
-					<div
-						className={ classnames(
-							'image-grid-container',
-							`is-layout-${ gridLayout }`
-						) }
-						style={ {
-							width: '100%',
-							height: '100%',
-							display: 'grid',
-							gap: `${ gap }px`,
+						key={ `${ width }-${ height }` }
+						size={ {
+							width: resizableWidth || undefined,
+							height: resizableHeight || undefined,
 						} }
+						style={ {
+							width: currentWidth,
+							height: currentHeight,
+						} }
+						minHeight={ 200 }
+						minWidth={ 200 }
+						enable={ {
+							top: false,
+							right: true,
+							bottom: true,
+							left: false,
+							topRight: false,
+							bottomRight: true,
+							bottomLeft: false,
+							topLeft: false,
+						} }
+						onResizeStop={ ( event, direction, element, delta ) => {
+							// Get the actual element dimensions after resize
+							const rect = element.getBoundingClientRect();
+							setAttributes( {
+								width: `${ Math.round( rect.width ) }px`,
+								height: `${ Math.round( rect.height ) }px`,
+							} );
+						} }
+						className="image-grid-resizable"
 					>
-						{ images.map( ( image, index ) => (
-							<div key={ index } className="image-grid-item">
-								{ image.url ? (
-									<img
-										src={ image.url }
-										alt={ image.alt }
-										style={ {
-											width: '100%',
-											height: '100%',
-											objectFit: 'cover',
-										} }
-									/>
-								) : (
-									<div className="image-placeholder">
-										<span>
-											{ sprintf(
+						<div
+							className={ classnames(
+								'image-grid-container',
+								`is-layout-${ gridLayout }`
+							) }
+							style={ {
+								width: '100%',
+								height: '100%',
+								display: 'grid',
+								gap: `${ gap }px`,
+							} }
+						>
+							{ images.map( ( image, index ) => (
+								<div key={ index } className="image-grid-item">
+									{ image.url ? (
+										<img
+											src={ image.url }
+											alt={ image.alt }
+											style={ {
+												width: '100%',
+												height: '100%',
+												objectFit: 'cover',
+											} }
+										/>
+									) : (
+										<div className="image-placeholder">
+											<span>
+												{ sprintf(
 												/* translators: %d: Image number */
-												__(
-													'Image %d',
-													'pikari-image-grid'
-												),
-												index + 1
-											) }
-										</span>
-									</div>
-								) }
-							</div>
-						) ) }
-					</div>
-				</ResizableBox>
+													__(
+														'Image %d',
+														'pikari-image-grid'
+													),
+													index + 1
+												) }
+											</span>
+										</div>
+									) }
+								</div>
+							) ) }
+						</div>
+					</ResizableBox>
 				</div>
 			</div>
 		</>

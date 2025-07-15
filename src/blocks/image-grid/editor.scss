@@ -43,9 +43,25 @@
 		display: inline-block;
 		max-width: 100%;
 
+		/* When no dimensions are set, use fit-content */
+		&:not([style*="height:"]) {
+			height: fit-content !important;
+		}
+		&:not([style*="width:"]) {
+			width: fit-content !important;
+		}
+
 		/* Ensure it can be centered when in a centered context */
 		.components-resizable-box__container {
 			margin: 0 auto;
+			
+			/* Support fit-content dimensions when not explicitly sized */
+			&:not([style*="height:"]) {
+				height: fit-content !important;
+			}
+			&:not([style*="width:"]) {
+				width: fit-content !important;
+			}
 		}
 	}
 	.components-resizable-box__handle {
