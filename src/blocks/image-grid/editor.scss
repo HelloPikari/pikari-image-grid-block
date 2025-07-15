@@ -4,6 +4,14 @@
 
 /* Editor wrapper */
 .wp-block-pikari-image-grid {
+	/* When inside a group with justify-items: center, allow centering */
+	.is-layout-constrained > &,
+	.wp-block-group > & {
+		.image-grid-resizable {
+			margin: 0 auto;
+		}
+	}
+
 	/* Placeholder styles for empty image positions */
 	.image-placeholder {
 		background-color: #f0f0f0;

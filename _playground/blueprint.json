@@ -4,8 +4,8 @@
 		"php": "8.2",
 		"wp": "latest"
 	},
-	"landingPage": "/wp-admin/post-new.php?post_type=page",
-	"login": true,
+	"landingPage": "/",
+	"login": false,
 	"features": {
 		"networking": true
 	},
@@ -17,20 +17,66 @@
 			}
 		},
 		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "wordpress.org/themes",
+				"slug": "twentytwentyfour"
+			}
+		},
+		{
 			"step": "installPlugin",
 			"pluginData": {
 				"resource": "url",
-				"url": "https://github-proxy.com/proxy/?repo=HelloPikari/[YOUR_GITHUB_REPO]&branch=build"
+				"url": "https://github-proxy.com/proxy/?repo=pikari/pikari-image-grid&branch=build"
 			},
 			"options": {
 				"activate": true
 			}
 		},
 		{
-			"step": "installTheme",
-			"themeData": {
-				"resource": "wordpress.org/themes",
-				"slug": "twentytwentyfour"
+			"step": "writeFile",
+			"path": "/wp-content/uploads/demo-1.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-1.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wp-content/uploads/demo-2.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-2.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wp-content/uploads/demo-3.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-3.jpg"
+			}
+		},
+		{
+			"step": "writeFile",
+			"path": "/wp-content/uploads/demo-4.jpg",
+			"data": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-4.jpg"
+			}
+		},
+		{
+			"step": "importWxr",
+			"file": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/demo-content.xml"
+			}
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"show_on_front": "page",
+				"page_on_front": 27
 			}
 		}
 	]

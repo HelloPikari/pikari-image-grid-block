@@ -7,6 +7,7 @@ import {
 	MediaUpload,
 	MediaUploadCheck,
 } from '@wordpress/block-editor';
+import { useRef, useEffect, useState } from '@wordpress/element';
 import {
 	PanelBody,
 	RangeControl,
@@ -56,6 +57,36 @@ export default function Edit( { attributes, setAttributes } ) {
 		},
 	} );
 
+	// Ref to track the block container for measuring parent dimensions
+	const containerRef = useRef( null );
+
+	// State to store parent dimensions
+	const [ parentDimensions, setParentDimensions ] = useState( null );
+
+	// Measure parent container dimensions
+	useEffect( () => {
+		if ( containerRef.current ) {
+			// Get the block wrapper's parent (the actual container)
+			const blockWrapper = containerRef.current.parentElement;
+			const parent = blockWrapper?.parentElement;
+			if ( parent ) {
+				const parentWidth = parent.offsetWidth;
+				const parentHeight = parent.offsetHeight;
+				
+				console.log( 'Block wrapper:', blockWrapper );
+				console.log( 'Parent element:', parent );
+				console.log( 'Parent width:', parentWidth );
+				console.log( 'Parent height:', parentHeight );
+				console.log( 'Parent computed style:', window.getComputedStyle( parent ) );
+				
+				setParentDimensions( {
+					width: parentWidth,
+					height: parentHeight,
+				} );
+			}
+		}
+	}, [] );
+
 	// Calculate dimensions for the ResizableBox
 	const currentWidth = width || '100%';
 	const currentHeight = height || 'auto';
@@ -68,8 +99,16 @@ export default function Edit( { attributes, setAttributes } ) {
 		return parseInt( value );
 	};
 
-	const resizableWidth = getNumericValue( width ) || 600;
-	const resizableHeight = getNumericValue( height ) || 400;
+	const resizableWidth = getNumericValue( width ) || parentDimensions?.width || 600;
+	const resizableHeight = getNumericValue( height ) || parentDimensions?.height || 400;
+
+	console.log( 'Current resizable values:', {
+		resizableWidth,
+		resizableHeight,
+		parentDimensions,
+		widthAttribute: width,
+		heightAttribute: height,
+	} );
 
 	const onSelectImage = ( imageNumber ) => ( media ) => {
 		setAttributes( {
@@ -333,7 +372,8 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<ResizableBox
+				<div ref={ containerRef } style={ { height: '100%' } }>
+					<ResizableBox
 					size={ {
 						width: resizableWidth,
 						height: resizableHeight,
@@ -406,6 +446,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						) ) }
 					</div>
 				</ResizableBox>
+				</div>
 			</div>
 		</>
 	);
