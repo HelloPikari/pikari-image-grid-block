@@ -1,6 +1,10 @@
 {
-	"permissions": {
-		"allow": ["Bash(npm run build:*)", "WebFetch(domain:localhost)"],
-		"deny": []
-	}
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "WebFetch(domain:localhost)",
+      "WebFetch(domain:github.com)"
+    ],
+    "deny": []
+  }
 }

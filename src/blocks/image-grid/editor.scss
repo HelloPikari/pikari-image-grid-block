@@ -4,11 +4,14 @@
 
 /* Editor wrapper */
 .wp-block-pikari-image-grid {
-	/* When inside a group with justify-items: center, allow centering */
-	.is-layout-constrained > &,
+	width: fit-content;
+	/* Center the block when inside groups with centering */
+	.is-layout-constrained > &[data-align="wide"],
+	.is-layout-constrained > &[data-align="full"],
 	.wp-block-group > & {
-		.image-grid-resizable {
-			margin: 0 auto;
+		> div {
+			display: table;
+			width: fit-content;
 		}
 	}
 
@@ -39,6 +42,11 @@
 		position: relative;
 		display: inline-block;
 		max-width: 100%;
+
+		/* Ensure it can be centered when in a centered context */
+		.components-resizable-box__container {
+			margin: 0 auto;
+		}
 	}
 	.components-resizable-box__handle {
 		z-index: 2;
