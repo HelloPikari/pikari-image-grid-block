@@ -54,6 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 // Collect images
 $images = [];
+$has_images = false;
 for ( $i = 1; $i <= 4; $i++ ) {
     $image_id = $attributes[ "image{$i}Id" ] ?? 0;
     if ( $image_id ) {
@@ -61,9 +62,15 @@ for ( $i = 1; $i <= 4; $i++ ) {
             'id' => $image_id,
             'alt' => $attributes[ "image{$i}Alt" ] ?? '',
         ];
+        $has_images = true;
     } else {
         $images[] = null;
     }
+}
+
+// Don't render anything if no images are set
+if ( ! $has_images ) {
+    return '';
 }
 
 ?>
