@@ -448,7 +448,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				<PanelBody
 					title={ __( 'Images', 'pikari-image-grid' ) }
-					initialOpen={ true }
+					initialOpen={ false }
 				>
 					{ renderImageControl( 1, image1Id, image1Url, image1Alt ) }
 					{ renderImageControl( 2, image2Id, image2Url, image2Alt ) }

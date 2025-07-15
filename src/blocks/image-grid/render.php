@@ -73,6 +73,7 @@ for ( $i = 1; $i <= 4; $i++ ) {
         <?php foreach ( $images as $index => $image ) : ?>
             <div class="image-grid-item<?php echo ( ! $image || ! $image['id'] ) ? ' has-placeholder' : ''; ?>">
             <?php if ( $image && $image['id'] ) : ?>
+                <figure class="image-grid-figure">
                 <?php
                 // Use WordPress functions for proper responsive images
                 echo wp_get_attachment_image(
@@ -88,8 +89,9 @@ for ( $i = 1; $i <= 4; $i++ ) {
                 );
                 ?>
                 <?php if ( $enable_captions && $image['alt'] ) : ?>
-                        <figcaption class="image-grid-caption"><?php echo esc_html($image['alt']); ?></figcaption>
-                    <?php endif; ?>
+                    <figcaption class="image-grid-caption"><?php echo esc_html($image['alt']); ?></figcaption>
+                <?php endif; ?>
+                </figure>
                 <?php else : ?>
                     <div class="image-placeholder">
                         <span>
