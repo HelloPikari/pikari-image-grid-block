@@ -34,11 +34,15 @@
 			}
 		},
 		{
+			"step": "mkdir",
+			"path": "/wp-content/uploads"
+		},
+		{
 			"step": "writeFile",
 			"path": "/wp-content/uploads/demo-1.jpg",
 			"data": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-1.jpg"
+				"url": "https://raw.githubusercontent.com/HelloPikari/pikari-image-grid-block/main/_playground/images/demo-1.jpg"
 			}
 		},
 		{
@@ -46,7 +50,7 @@
 			"path": "/wp-content/uploads/demo-2.jpg",
 			"data": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-2.jpg"
+				"url": "https://raw.githubusercontent.com/HelloPikari/pikari-image-grid-block/main/_playground/images/demo-2.jpg"
 			}
 		},
 		{
@@ -54,7 +58,7 @@
 			"path": "/wp-content/uploads/demo-3.jpg",
 			"data": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-3.jpg"
+				"url": "https://raw.githubusercontent.com/HelloPikari/pikari-image-grid-block/main/_playground/images/demo-3.jpg"
 			}
 		},
 		{
@@ -62,14 +66,14 @@
 			"path": "/wp-content/uploads/demo-4.jpg",
 			"data": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/images/demo-4.jpg"
+				"url": "https://raw.githubusercontent.com/HelloPikari/pikari-image-grid-block/main/_playground/images/demo-4.jpg"
 			}
 		},
 		{
 			"step": "importWxr",
 			"file": {
 				"resource": "url",
-				"url": "https://raw.githubusercontent.com/pikari/pikari-image-grid/main/_playground/demo-content.xml"
+				"url": "https://raw.githubusercontent.com/HelloPikari/pikari-image-grid-block/main/_playground/demo-content.xml"
 			}
 		},
 		{
