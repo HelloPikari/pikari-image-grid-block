@@ -13,6 +13,8 @@
 $grid_layout = $attributes['gridLayout'] ?? 'asymmetric';
 $gap = $attributes['gap'] ?? 16;
 $image_border_radius = $attributes['imageBorderRadius'] ?? 8;
+$image_border_width = $attributes['imageBorderWidth'] ?? 0;
+$image_border_color = $attributes['imageBorderColor'] ?? '';
 $enable_captions = $attributes['enableCaptions'] ?? false;
 $width = $attributes['width'] ?? '';
 $height = $attributes['height'] ?? '';
@@ -35,7 +37,12 @@ $container_classes = [
 $wrapper_styles = [
     '--image-grid-gap: ' . $gap . 'px',
     '--image-grid-border-radius: ' . $image_border_radius . 'px',
+    '--image-grid-border-width: ' . $image_border_width . 'px',
 ];
+
+if ( ! empty($image_border_color) ) {
+    $wrapper_styles[] = '--image-grid-border-color: ' . esc_attr($image_border_color);
+}
 
 if ( ! empty($width) ) {
     $wrapper_styles[] = 'width: ' . esc_attr($width);

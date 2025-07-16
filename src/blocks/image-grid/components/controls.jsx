@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
 import {
     PanelBody,
     RangeControl,
@@ -27,9 +27,11 @@ import {
  * @param {string}   props.gridLayout        - Current grid layout
  * @param {number}   props.gap               - Gap between images
  * @param {number}   props.imageBorderRadius - Border radius for images
+ * @param {number}   props.imageBorderWidth  - Border width for images
+ * @param {string}   props.imageBorderColor  - Border color for images
  * @param {Function} props.setAttributes     - Function to update block attributes
  */
-function LayoutSettings( { gridLayout, gap, imageBorderRadius, setAttributes } ) {
+function LayoutSettings( { gridLayout, gap, imageBorderRadius, imageBorderWidth, imageBorderColor, setAttributes } ) {
     return (
         <PanelBody title={ __( 'Layout Settings', 'pikari-image-grid' ) }>
             <SelectControl
@@ -95,6 +97,43 @@ function LayoutSettings( { gridLayout, gap, imageBorderRadius, setAttributes } )
                     'pikari-image-grid'
                 ) }
             />
+
+            <RangeControl
+                label={ __(
+                    'Image Border Width',
+                    'pikari-image-grid'
+                ) }
+                value={ imageBorderWidth }
+                onChange={ ( value ) =>
+                    setAttributes( {
+                        imageBorderWidth: value,
+                    } )
+                }
+                min={ 0 }
+                max={ 10 }
+                step={ 1 }
+                help={ __(
+                    'Set the border width for images.',
+                    'pikari-image-grid'
+                ) }
+            />
+
+            { imageBorderWidth > 0 && (
+                <PanelColorSettings
+                    title={ __( 'Border Color', 'pikari-image-grid' ) }
+                    initialOpen={ false }
+                    colorSettings={ [
+                        {
+                            value: imageBorderColor,
+                            onChange: ( value ) =>
+                                setAttributes( {
+                                    imageBorderColor: value || '',
+                                } ),
+                            label: __( 'Border Color', 'pikari-image-grid' ),
+                        },
+                    ] }
+                />
+            ) }
         </PanelBody>
     );
 }
@@ -258,6 +297,8 @@ export default function Controls( { attributes, setAttributes } ) {
         gridLayout,
         gap,
         imageBorderRadius,
+        imageBorderWidth,
+        imageBorderColor,
         enableCaptions,
         width,
         height,
@@ -269,6 +310,8 @@ export default function Controls( { attributes, setAttributes } ) {
                 gridLayout={ gridLayout }
                 gap={ gap }
                 imageBorderRadius={ imageBorderRadius }
+                imageBorderWidth={ imageBorderWidth }
+                imageBorderColor={ imageBorderColor }
                 setAttributes={ setAttributes }
             />
             <DisplaySettings

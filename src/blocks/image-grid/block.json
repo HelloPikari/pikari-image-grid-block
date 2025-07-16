@@ -48,6 +48,14 @@
 			"type": "number",
 			"default": 8
 		},
+		"imageBorderWidth": {
+			"type": "number",
+			"default": 0
+		},
+		"imageBorderColor": {
+			"type": "string",
+			"default": ""
+		},
 		"gap": {
 			"type": "number",
 			"default": 16

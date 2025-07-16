@@ -20,12 +20,14 @@ import { extractImagesFromAttributes } from './utils/imageHelpers';
  * @param {Function} root0.setAttributes - Function to update block attributes
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { gap, imageBorderRadius, gridLayout, width, height } = attributes;
+	const { gap, imageBorderRadius, imageBorderWidth, imageBorderColor, gridLayout, width, height } = attributes;
 
 	const blockProps = useBlockProps( {
 		style: {
 			'--image-grid-gap': `${ gap }px`,
 			'--image-grid-border-radius': `${ imageBorderRadius }px`,
+			'--image-grid-border-width': `${ imageBorderWidth }px`,
+			'--image-grid-border-color': imageBorderColor || 'transparent',
 		},
 	} );
 

@@ -40,6 +40,12 @@
 			border: 2px dashed #ddd;
 			border-radius: var(--image-grid-border-radius, 8px);
 		}
+
+		/* Apply border to images */
+		img {
+			border: var(--image-grid-border-width, 0) solid var(--image-grid-border-color, transparent);
+			box-sizing: border-box;
+		}
 	}
 
 	/* ResizableBox styles */
