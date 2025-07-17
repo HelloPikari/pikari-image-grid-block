@@ -20,9 +20,10 @@ import { extractImagesFromAttributes } from './utils/imageHelpers';
  * @param {Function} root0.setAttributes - Function to update block attributes
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { gap, imageBorderRadius, imageBorderWidth, imageBorderColor, gridLayout, width, height } = attributes;
+	const { gap, imageBorderRadius, imageBorderWidth, imageBorderColor, gridLayout, width, height, enableCaptions } = attributes;
 
 	const blockProps = useBlockProps( {
+		className: enableCaptions ? 'has-captions' : '',
 		style: {
 			'--image-grid-gap': `${ gap }px`,
 			'--image-grid-border-radius': `${ imageBorderRadius }px`,
@@ -66,6 +67,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						gap={ gap }
 						width={ width }
 						height={ height }
+						enableCaptions={ enableCaptions }
 						setAttributes={ setAttributes }
 					/>
 				</div>

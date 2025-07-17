@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Image border width control (0-10px range)
+- Image border color control with theme palette integration
+- Conditional display of color picker when border width > 0
+
+### Fixed
+
+- Caption display in backend editor when "Enable Captions" is toggled
+
+### Changed
+
+- Refactored editor.jsx into modular components for better maintainability
+- Reduced editor.jsx from 525 lines to 73 lines (86% reduction)
+
 ## [0.2.0] - 2025-07-15
 
 ## [0.2.0] - 2025-07-15

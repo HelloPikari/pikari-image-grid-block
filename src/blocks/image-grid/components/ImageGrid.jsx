@@ -12,13 +12,14 @@ import { getNumericValue } from '../utils/imageHelpers';
 
 /**
  * Image grid display component
- * @param {Object}   props               - Component props
- * @param {Array}    props.images        - Array of image objects
- * @param {string}   props.gridLayout    - Grid layout type
- * @param {number}   props.gap           - Gap between images
- * @param {string}   props.width         - Grid width
- * @param {string}   props.height        - Grid height
- * @param {Function} props.setAttributes - Function to update block attributes
+ * @param {Object}   props                - Component props
+ * @param {Array}    props.images         - Array of image objects
+ * @param {string}   props.gridLayout     - Grid layout type
+ * @param {number}   props.gap            - Gap between images
+ * @param {string}   props.width          - Grid width
+ * @param {string}   props.height         - Grid height
+ * @param {boolean}  props.enableCaptions - Whether to show captions
+ * @param {Function} props.setAttributes  - Function to update block attributes
  */
 export default function ImageGrid( {
     images,
@@ -26,6 +27,7 @@ export default function ImageGrid( {
     gap,
     width,
     height,
+    enableCaptions,
     setAttributes,
 } ) {
     // Calculate dimensions for the ResizableBox
@@ -90,15 +92,23 @@ export default function ImageGrid( {
                         ) }
                     >
                         { image.url ? (
-                            <img
-                                src={ image.url }
-                                alt={ image.alt }
-                                style={ {
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                } }
-                            />
+                            <figure className="image-grid-figure">
+                                <img
+                                    src={ image.url }
+                                    alt={ image.alt }
+                                    className="image-grid-image"
+                                    style={ {
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                    } }
+                                />
+                                { enableCaptions && image.alt && (
+                                    <figcaption className="image-grid-caption">
+                                        { image.alt }
+                                    </figcaption>
+                                ) }
+                            </figure>
                         ) : (
                             <div className="image-placeholder">
                                 <span>
