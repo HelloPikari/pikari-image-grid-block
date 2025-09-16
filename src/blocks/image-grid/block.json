@@ -4,7 +4,7 @@
 	"name": "pikari/image-grid",
 	"version": "0.2.0",
 	"title": "Image Grid",
-	"category": "pikari",
+	"category": "design",
 	"icon": "grid-view",
 	"description": "Display four images in a customizable grid layout.",
 	"example": {},
