@@ -78,10 +78,10 @@ template: |
 
     ### Composer
     ```bash
-    composer require pikari-inc/pikari-gutenberg-modals:$RESOLVED_VERSION
+    composer require pikari-inc/pikari-image-grid-block:$RESOLVED_VERSION
     ```
 
     ### WordPress Plugin
-    Download `pikari-gutenberg-modals.zip` from the assets below.
+    Download `pikari-image-grid-block.zip` from the assets below.
 
     **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
