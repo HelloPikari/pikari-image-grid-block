@@ -1,12 +1,12 @@
 {
-  "name": "pikari-inc/pikari-gutenberg-accordion",
-  "description": "WordPress Accordion/Toggle block plugin",
+  "name": "pikari-inc/pikari-image-grid",
+  "description": "WordPress Image Grid block plugin",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "require": {
     "php": ">=8.2"
   },
   "extra": {
-    "installer-name": "pikari-gutenberg-accordion"
+    "installer-name": "pikari-image-grid"
   }
 }
