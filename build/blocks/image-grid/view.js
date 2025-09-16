@@ -1,0 +1,1 @@
+!function(){const n=document.querySelectorAll(".wp-block-pikari-image-grid");n.length&&n.forEach(function(n){!function(n){n.addEventListener("click",function(){})}(n)})}();
