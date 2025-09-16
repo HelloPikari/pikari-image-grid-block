@@ -1,7 +1,7 @@
 {
   "name": "pikari-image-grid-block",
   "version": "0.3.0",
-  "description": "A customizable image grid gutenberg block for WordPress",
+  "description": "A customizable image grid Gutenberg block for WordPress",
   "author": "Pikari",
   "license": "GPL-2.0-or-later",
   "keywords": [
