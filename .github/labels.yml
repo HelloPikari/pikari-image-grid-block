@@ -23,7 +23,7 @@
   color: fef2c0
   description: Maintenance and chores
 - name: ci
-  color: "000000"
+  color: '000000'
   description: CI/CD improvements
 - name: skip-changelog
   color: eeeeee
