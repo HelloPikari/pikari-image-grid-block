@@ -9,7 +9,10 @@
       "Bash(cat:*)",
       "Bash(mkdir:*)",
       "Bash(npm run lint:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npm ls:*)",
+      "Bash(/dev/null)",
+      "Bash(composer validate:*)"
     ],
     "deny": []
   }
