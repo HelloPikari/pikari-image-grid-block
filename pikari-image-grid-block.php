@@ -3,7 +3,7 @@
  * Plugin Name:       Pikari Image Grid Block
  * Plugin URI:        https://github.com/pikari/pikari-image-grid-block
  * Description:       A customizable image grid block with multiple layout options.
- * Version: 0.3.0
+ * Version: 0.4.0
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            Pikari

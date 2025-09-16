@@ -111,6 +111,7 @@ npm install
 ```
 
 The pre-commit hook will:
+
 1. Run PHP linting on changed `.php` files
 2. Run ESLint on changed `.js` files
 3. Run Stylelint on changed `.css` and `.scss` files
@@ -118,6 +119,7 @@ The pre-commit hook will:
 5. Prevent commit if any linting errors are found
 
 To bypass pre-commit hooks in emergency situations:
+
 ```bash
 git commit --no-verify -m "Emergency fix"
 ```
@@ -185,10 +187,12 @@ When developing WordPress blocks, you'll encounter version fields in `block.json
 ### Understanding Version Fields
 
 **`apiVersion`**: The Block API version your block uses (currently 3)
+
 - Always use the latest version unless you have specific compatibility requirements
 - All blocks must use apiVersion 3+ to enable the editor iframe feature
 
 **`version`**: Your individual block's version number
+
 - Independent from your plugin version
 - Only update when the block itself changes
 - Optional field (WordPress uses its own version for cache busting if omitted)
@@ -198,6 +202,7 @@ When developing WordPress blocks, you'll encounter version fields in `block.json
 **Key Principle**: The block version should NOT automatically match your plugin version.
 
 Example scenario:
+
 ```json
 // block.json
 {
@@ -219,6 +224,7 @@ Example scenario:
 ### When to Update Block Versions
 
 ✅ **Update block version when**:
+
 - Block JavaScript code changes
 - Block styles are modified
 - Block attributes are added/removed
@@ -226,6 +232,7 @@ Example scenario:
 - Block supports or features are modified
 
 ❌ **Don't update block version when**:
+
 - Only PHP files are updated
 - Unrelated plugin bugs are fixed
 - Documentation is updated
@@ -236,6 +243,7 @@ Example scenario:
 The release script (`bin/release.sh`) does NOT automatically update block.json versions. This is intentional and follows best practices.
 
 To manage block versions:
+
 1. **Manual Updates**: Update block.json version manually when block changes
 2. **Automated Detection**: Consider adding a build step that detects changes in block source files
 3. **Separate Tracking**: Maintain a changelog specifically for block changes
@@ -249,6 +257,7 @@ To manage block versions:
 5. **Block Style Update**: Plugin → 0.3.1, Block → 0.2.1
 
 This approach ensures:
+
 - Clear tracking of what changed
 - Accurate cache invalidation for block assets
 - Better debugging when issues arise
@@ -274,6 +283,7 @@ add_filter('pikari_image_grid_image_size', function($size) {
 ## Testing
 
 Tests are planned for future releases. The project structure includes support for:
+
 - JavaScript unit tests via `npm run test:unit`
 - End-to-end tests via `npm run test:e2e`
 - PHP unit tests via `composer test`
@@ -298,6 +308,7 @@ This plugin uses an automated release process:
 ```
 
 **Important Notes:**
+
 - The main branch excludes built files (`build/` directory)
 - The release branch includes all built files for distribution
 - Block versions in `block.json` are NOT automatically updated (see Block Version Management section)

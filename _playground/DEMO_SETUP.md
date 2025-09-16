@@ -93,6 +93,7 @@ When the WordPress Playground loads, it will automatically open to create a new 
 ## Demo Images
 
 The demo images (800x600, 4:3 aspect ratio) are available in `_playground/images/`:
+
 - `demo-1.jpg` - Mountain landscape  
 - `demo-2.jpg` - Golden Gate Bridge at sunset
 - `demo-3.jpg` - Forest path with sunlight
